@@ -3,9 +3,6 @@
 
 ### Fique a vontade para fazer fork e ajudar com pull request :D
 
-## Se você apenas deseja baixar para utilizar como ferramenta diária:
-> - [Clique aqui para baixar](https://download1505.mediafire.com/abkqb3zb14zg/at3tq57qns9l57x/YoutubeDownloader.exe)
-> - Salve onde quiser
-> - Após isso, execute o arquivo e está pronto o sorvetinho! :D
+## Para utilizar você precisa ter o pip instaldo em sua maquina
 
 ## Bons downloads e até mais!!

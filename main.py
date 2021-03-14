@@ -42,10 +42,12 @@ def decision():
         yt = YouTube(link)
         video = yt.streams.filter(progressive=True)
         audio = yt.streams.filter(only_audio=True).get_audio_only()
+        print(" ")
         opcao = input(
             'Você quer o video e audio ou apenas audio?\n1- Para video e audio\n2- Para audio\nDigite a opção: '
         )
         if opcao == '1':
+            print(" ")
             print('Escolha uma das opções disponiveis: ')
             for v in video:
                 print('- ', v.resolution)
@@ -67,7 +69,7 @@ def decision():
         total = 0
         contador = 0
         print(
-            'Estamos preparando o download, dependendo do tamanho da playlist pode demorar um pouco'
+            'Estamos preparando o download, dependendo do tamanho da playlist pode demorar um pouco\n'
         )
         for video in p.video_urls:
             try:
@@ -80,7 +82,7 @@ def decision():
                 continue
 
         print('Estamos baixando os audios, foram encontrados ', total,
-              'audios publicos.')
+              'audios publicos.\n')
         for video in p.video_urls:
             try:
                 if YouTube(video).check_availability():

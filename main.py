@@ -30,23 +30,28 @@ def download(type, path, array, qualidade):
 
 
 def decision():
-    opcaoPrincipal = input('Você irá baixar\n1- Apenas um arquivo\n2- Uma playlist (apenas audio)\nDigite uma opção: ')
+    opcaoPrincipal = input(
+        'Você irá baixar\n1- Apenas um arquivo\n2- Uma playlist (apenas audio)\nDigite uma opção: '
+    )
     print(" ")
-    print('Onde deseja salvar o arquivo?')
-    path = getPath()
     print(" ")
     if opcaoPrincipal == '1':
+        print('Onde deseja salvar o arquivo?')
+        path = getPath()
         link = input('Digite o link do vídeo: ')
         yt = YouTube(link)
         video = yt.streams.filter(progressive=True)
         audio = yt.streams.filter(only_audio=True).get_audio_only()
         opcao = input(
-            'Você quer o video e audio ou apenas audio?\n1- Para video e audio\n2- Para audio\nDigite a opção: ')
+            'Você quer o video e audio ou apenas audio?\n1- Para video e audio\n2- Para audio\nDigite a opção: '
+        )
         if opcao == '1':
             print('Escolha uma das opções disponiveis: ')
             for v in video:
                 print('- ', v.resolution)
-            qualidade = input('Digite uma das resoluções, apenas número\nDigite a qualidade: ')
+            qualidade = input(
+                'Digite uma das resoluções, apenas número\nDigite a qualidade: '
+            )
             download('video', path, video, qualidade)
         elif opcao == '2':
             download('audio', path, audio, '')
@@ -55,11 +60,15 @@ def decision():
             decision()
             print('')
     elif opcaoPrincipal == '2':
+        print('Onde deseja salvar o arquivo?')
+        path = getPath()
         link = input('Digite o link do playlist: ')
         p = Playlist(link)
         total = 0
         contador = 0
-        print('Estamos preparando o download, dependendo do tamanho da playlist pode demorar um pouco')
+        print(
+            'Estamos preparando o download, dependendo do tamanho da playlist pode demorar um pouco'
+        )
         for video in p.video_urls:
             try:
                 if YouTube(video).check_availability():
@@ -70,7 +79,8 @@ def decision():
             except VideoUnavailable:
                 continue
 
-        print('Estamos baixando os audios, foram encontrados ', total, 'audios publicos.')
+        print('Estamos baixando os audios, foram encontrados ', total,
+              'audios publicos.')
         for video in p.video_urls:
             try:
                 if YouTube(video).check_availability():
@@ -78,7 +88,9 @@ def decision():
                 else:
                     YouTube(video).streams.get_audio_only().download(path)
                     contador = contador + 1
-                    print('O seu download está em ' + str(round(((contador * 100) / total), 1)), '%')
+                    print(
+                        'O seu download está em ' +
+                        str(round(((contador * 100) / total), 1)), '%')
             except VideoUnavailable:
                 continue
 
